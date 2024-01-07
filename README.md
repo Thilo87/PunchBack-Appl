@@ -14,9 +14,13 @@ Gameplay-Video:
 [TOC]
 
 # Online-Funktionalität
-Der Spieler hat die Möglichkeit, einen Spielernamen auszuwählen, welcher mit seiner Steam-ID verknüpft in einer MySQL-Datenbank auf einem Web Server gespeichert wird. Unter dieser Steam-ID werden auch auch andere Daten wie High-Scores und Bewertungen gespeichert.
+Der Spieler hat die Möglichkeit, einen Spielernamen auszuwählen, welcher mit seiner Steam-ID verknüpft in einer *MySQL*-Datenbank auf einem Web-Server gespeichert wird. Unter dieser Steam-ID werden auch auch andere Daten wie High-Scores und Bewertungen gespeichert.
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/SQLOnline.jpg?raw=true)
+
+Bei Anfragen an den Web-Server werden PHP-Scripte ausgeführt, welche die Parameter auf Gültigkeit überprüft und Querys in der MySQL-Datenbank ausführt. Es wurde viel Wert auf die Sicherheit der Datenbank gesetzt, so werden z.B. alle gewählten Spielernamen AES-verschlüsselt und nur ein Hash der Steam-ID gespeichert.
+
+Für das Senden von GET- und POST-Anfragen an den Server wurde das HTTP-Modul der Unreal Engine verwendet. Zumeist gibt die aufgerufene Methode dabei ein Handle mit Delegates zurück, an die in Blueprints die Funktionalität bei Erfolg bzw. Misserfolg gebunden wird.
 
 # Features
 ## Übersicht
@@ -34,12 +38,8 @@ Der Spieler hat die Möglichkeit, einen Spielernamen auszuwählen, welcher mit s
 - Localization: das Spiel ist zweisprachig auf Deutsch und Englisch
 - Fehlerberichterstattung: der Spieler kann mit seiner Zustimmung automatisch bei Fehlern Log-Daten an den Entwickler senden
 
-## Registrierung
-
 ## Bewertungen
-
-
-
+Das Spiel lädt automatisch Bewertungen für Levels hoch bzw. eine durchschnittliche Community-Bewertung herunter.
 
 ## Online-High-Scores
 Die High-Scores des Spielers für jedes Level und jede Schwierigkeitsstufe können auf einen Webserver geuploadet bzw. die High-Scores der anderen Spieler gedownloadet werden. Das Leaderboard-Feature von Steam wurde dabei nicht verwendet.
