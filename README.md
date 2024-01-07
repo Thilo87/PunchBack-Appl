@@ -4,6 +4,7 @@
 
 *Punch Back* ist ein VR-Ryhthmus-Spiel, in dem der Spieler zum Takt der Musik auf ihn zufliegende Objekte boxen oder ihnen ausweichen muss. Der Fokus liegt bei diesem Spiel auf a) sportlicher Herausforderung und b) eine musikalische Club-/Disco-Atmosphäre zu erzeugen.
 
+Gameplay-Video:
 <p align="center">
 <a href="https://www.youtube.com/watch?v=mOvrBCflcGI"  target="_blank"><img src="https://img.youtube.com/vi/mOvrBCflcGI/0.jpg"></a>
 </p>
@@ -12,41 +13,55 @@
 
 [TOC]
 
+# Online-Funktionalität
+Der Spieler hat die Möglichkeit, einen Spielernamen auszuwählen, welcher mit seiner Steam-ID verknüpft in einer MySQL-Datenbank auf einem Web Server gespeichert wird. Unter dieser Steam-ID werden auch auch andere Daten wie High-Scores und Bewertungen gespeichert.
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/SQLOnline.jpg?raw=true)
+
 # Features
 ## Übersicht
-- Online-High-Scores: die High-Scores der Spieler können hochgeladen und in einem Leaderboard angezeigt werden
+- Registrierung: der Spieler kann einen Spielernamen auswählen, der mit seiner Steam-ID verknüpft wird
+- Online-High-Scores: die High-Scores der Spieler können geuploaded und in einem Leaderboard angezeigt werden
+- Bewertungen: die Bewertungen für Levels können geuploaded und eine durchschnittliche Community-Bewertung gedownloaded werden
+- Anbindung an Steam: das Spiel ist für Steam konzipiert und nutzt einige der Features von Steam, zum Beispiel die *Steam-Achievements*
 - Statistiken: es werden zahlreiche Statistiken zum Spielerverhalten lokal in einer Datenbank gespeichert und dem Spieler in Tabellen und Funktionsgraphen angezeigt
 - Profile: der Spieler hat die Möglichkeit, verschiedene Profile für sich mit jeweils eigenen Statistiken, High-Scores etc. zu erstellen
-- Level-Editor: das Spiel enthält einen umfangreichen Level-Editor
 - Modifier: der Spieler kann gewisse Aspekte des Spiels modifizieren und bekommt dafür mehr oder weniger Punkte
 - Medaillen: der Spieler kann Medaillen gewinnen und sammeln
-- Anbindung an Steam: das Spiel ist für Steam konzipiert und nutzt einige der Features von Steam
 - Favouriten: der Spieler kann Levels zu seinen Favouriten hinzufügen und sich diese anzeigen lassen
-- Playlists: der Spieler kann Playlists mit verschiedenen Leveln und verschiedenen Spieleinstellungen erstellen
+- Playlists: der Spieler kann Playlists mit verschiedenen Leveln und verschiedenen Spieleinstellungen selber erstellen
+- Level-Editor: das Spiel enthält einen umfangreichen Level-Editor
 - Localization: das Spiel ist zweisprachig auf Deutsch und Englisch
 - Fehlerberichterstattung: der Spieler kann mit seiner Zustimmung automatisch bei Fehlern Log-Daten an den Entwickler senden
 
-### Online-High-Scores
-Die High-Scores des Spielers für jedes Level und jede Schwierigkeitsstufe können auf einen Webserver geuploadet bzw. die High-Scores der anderen Spieler gedownloadet werden. Das Leaderboard-Feature von Steam wurde dabei nicht verwendet, da bei diesem die Anzahl der möglichen Leaderboards begrenzt ist und bei gegebener Popularität des Spiels aufgrund der besonderen Architektur des Spiels diese Obergrenze leicht überschritten werden könnte.
+## Registrierung
+
+## Bewertungen
+
+
+
+
+## Online-High-Scores
+Die High-Scores des Spielers für jedes Level und jede Schwierigkeitsstufe können auf einen Webserver geuploadet bzw. die High-Scores der anderen Spieler gedownloadet werden. Das Leaderboard-Feature von Steam wurde dabei nicht verwendet.
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/OnlineHighScores.jpg?raw=true)
 
-#### Anti-Cheat-Maßnahmen
+### Anti-Cheat-Maßnahmen
 Es wurden einige Maßnahmen ergriffen, um das Uploaden veränderter High-Scores und die Veränderung von Leveln zu erschweren.
 
-##### Level-Hashes
+#### Level-Hashes
 Würde ein Level einen festgelegten Identifier besitzen, unter dem die High-Scores online gespeichert werden, könnte man die Leveldaten so verändern, dass das Level leichter wird oder mehr Punkte abwirft. Um dies zu verhindern, wird mit Hilfe der *FMD5*-Klasse ein MD5-Hash über alle relevanten Leveldaten eines Levels erzeugt. Dieser Hashwert dient nun als Identifier für die online gespeicherten High-Scores verwendet. Eine Veränderung der Leveldaten hat nun eine Veränderung des Hash-Wertes zur Folge, d.h. sollte ein Spieler ein Level auch nur geringfügig verändern, wird das Level wie ein neues behandelt und eine neue High-Score-Tabelle dafür eingerichtet.
 
-##### SCUE5
+#### SCUE5
 Das kostenlose Plugin *SCUE5* wurde verwendet, um sensible Daten wie den aktuellen Score des Spielers im Speicher zu verschlüsseln, damit sie mit Cheating-Software wie z.B. der *Cheat Engine* nicht bzw. nur sehr schwierig auszulesen und zu verändern sind.
 
-##### Steam-Tickets
+#### Steam-Tickets
 Über das *Identity-Interface* des *OnlineSubsystems* kann ein Steam-WebAPI-Ticket abgerufen werden und serverseitig über die URL https://api.steampowered.com/ISteamUserAuth/AuthenticateUserTicket/v1/ auf Gültigkeit überprüft werden. Dieses Feature von Steam wird bei verschiedenen Anfragen verwendet.
 
-##### Verifikations-Hashes + Salt
+#### Verifikations-Hashes + Salt
 Bei sensiblen Anfragen an den Server, z.B. dem Upload von Daten, wird zusätzlich zu den Daten ein MD5-Wert aus diesen Daten und einem Steam-WebAPI-Ticket, sowie ein geheimer Salt gesendet. Dies macht es wesentlich schwieriger, die Daten in der URL zu verfälschen.
 
-### Statistiken
+## Statistiken
 Für jedes gestartete Spiel werden Statistiken wie z.B. der erreichte Score, der härteste Boxschlag uvm. lokal in einer *MySQL*-Datenbank gespeichert. Dafür werden diese Werte zunächst im Speicher angelegt und bei Beendigung des Levels in die Datenbank übertragen. Hierfür wurde [S. Rombauts SQLiteCpp-Library](https://github.com/SRombauts/SQLiteCpp "S. Rombauts SQLiteCpp-Library") verwendet. Über entsprechende *MySQL*-Querys werden diese Daten abgerufen und dem Spieler präsentiert.
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/LevelStatistics.jpg?raw=true)
@@ -55,17 +70,17 @@ Für jedes gestartete Spiel werden Statistiken wie z.B. der erreichte Score, der
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/GlobalStats2.jpg?raw=true)
 
-### Profile
+## Profile
 Der Spieler hat die Möglichkeit, verschiedene Profile für sich mit jeweils eigenen Playlists, Favouriten, Medaillen und Statistiken zu erstellen und zu verwalten. Dabei wird für jede Steam-ID und für jedes Profil ein eigener Ordner mit den entsprechenden Daten erstellt.
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Profiles1.jpg?raw=true)
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Profiles2.jpg?raw=true)
 
-### Level-Editor
+## Level-Editor
 Das Spiel enthält einen umfangreichen Level-Editor, mit dem der Spieler neue Levels mit eigens ausgewählter Musik erstellen kann.
 
-#### Features
+### Features
 - Ein Undo-Redo-System
 - Erzeugung aller notwendigen Leveldaten, inkl. der Waveform einer MP3-Datei im *JSON*-Format mittels externer Software, die über einen *FMonitoredProcess* ausgeführt wird
 - Bearbeitung von Objekten, Festlegung ihrer Positionen und Einstellen ihrer Eigenschaften
@@ -85,18 +100,15 @@ Das Spiel enthält einen umfangreichen Level-Editor, mit dem der Spieler neue Le
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Editor6.jpg?raw=true)
 
-### Modifier
+## Modifier
 Der Spieler hat vor dem Start eines Spiels die Möglichkeit, verschiedene Modifier auszuwählen, welche das Spiel schwieriger oder leichter machen können, wofür er mehr bzw. weniger Punkte bekommt.
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Modifiers.jpg?raw=true)
 
-### Medaillen
+## Medaillen
 Der Spieler kann Bronze-, Silber- und Goldmedaillen gewinnen. Die benötigte Punktezahl dafür wird in den Leveldaten gespeichert.
 
-### Anbindung an Steam
-Das Spiel nutzt die *Steam-Achievements* 
-
-### Fehlerberichterstattung
+## Fehlerberichterstattung
 Das Spiel verfügt über ein eigenes Fehlerberichterstattungssystem, welches auch im *Shipping Build* vorhanden ist. Das Abspeichern von Log-Daten wurde aus Performance-Gründen ausgeschaltet. Diese werden nur im Arbeitsspeicher zwischengespeichert und im Falle eines Fehlers nach Zustimmung des Spielers auf den Server geuploaded, nachdem sie in einem temporären Ordner abgespeichert und mittels des Plugins *ZipIt* komprimiert wurden.
 
 
