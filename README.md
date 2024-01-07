@@ -45,8 +45,18 @@ Bei sensiblen Anfragen an den Server, z.B. dem Upload von Daten, wird zusätzlic
 ### Statistiken
 Für jedes gestartete Spiel werden Statistiken wie z.B. der erreichte Score, der härteste Boxschlag uvm. lokal in einer *MySQL*-Datenbank gespeichert. Dafür werden diese Werte zunächst im Speicher angelegt und bei Beendigung des Levels in die Datenbank übertragen. Hierfür wurde [S. Rombauts SQLiteCpp-Library](https://github.com/SRombauts/SQLiteCpp "S. Rombauts SQLiteCpp-Library") verwendet. Über entsprechende *MySQL*-Querys werden diese Daten abgerufen und dem Spieler präsentiert.
 
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/LevelStatistics.jpg?raw=true)
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/GlobalStats1.jpg?raw=true)
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/GlobalStats2.jpg?raw=true)
+
 ### Profile
 Der Spieler hat die Möglichkeit, verschiedene Profile für sich mit jeweils eigenen Playlists, Favouriten, Medaillen und Statistiken zu erstellen und zu verwalten. Dabei wird für jede Steam-ID und für jedes Profil ein eigener Ordner mit den entsprechenden Daten erstellt.
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Profiles1.jpg?raw=true)
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Profiles2.jpg?raw=true)
 
 ### Level-Editor
 Das Spiel enthält einen umfangreichen Level-Editor, mit dem der Spieler neue Levels mit eigens ausgewählter Musik erstellen kann.
@@ -59,8 +69,22 @@ Das Spiel enthält einen umfangreichen Level-Editor, mit dem der Spieler neue Le
 - Erstellen und Abspeichern von Blaupausen
 - Autosaves in festgelegten Intervallen
 
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Editor1.jpg?raw=true)
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Editor2.jpg?raw=true)
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Editor3.jpg?raw=true)
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Editor4.jpg?raw=true)
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Editor5.jpg?raw=true)
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Editor6.jpg?raw=true)
+
 ### Modifier
 Der Spieler hat vor dem Start eines Spiels die Möglichkeit, verschiedene Modifier auszuwählen, welche das Spiel schwieriger oder leichter machen können, wofür er mehr bzw. weniger Punkte bekommt.
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Modifiers.jpg?raw=true)
 
 ### Medaillen
 Der Spieler kann Bronze-, Silber- und Goldmedaillen gewinnen. Die benötigte Punktezahl dafür wird in den Leveldaten gespeichert.
