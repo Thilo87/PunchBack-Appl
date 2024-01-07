@@ -25,6 +25,8 @@
 ### Online-High-Scores
 Die High-Scores des Spielers für jedes Level und jede Schwierigkeitsstufe können auf einen Webserver geuploadet bzw. die High-Scores der anderen Spieler gedownloadet werden. Das Leaderboard-Feature von Steam wurde dabei nicht verwendet, da bei diesem die Anzahl der möglichen Leaderboards begrenzt ist und bei gegebener Popularität des Spiels aufgrund der besonderen Architektur des Spiels diese Obergrenze leicht überschritten werden könnte.
 
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/OnlineHighScores.jpg?raw=true)
+
 #### Anti-Cheat-Maßnahmen
 Es wurden einige Maßnahmen ergriffen, um das Uploaden veränderter High-Scores und die Veränderung von Leveln zu erschweren.
 
