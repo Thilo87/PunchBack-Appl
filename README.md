@@ -9,8 +9,8 @@
 
 [TOC]
 
-#Features
-##Übersicht
+# Features
+## Übersicht
 - Online-High-Scores: die High-Scores der Spieler können hochgeladen und in einem Leaderboard angezeigt werden
 - Statistiken: es werden zahlreiche Statistiken zum Spielerverhalten lokal in einer Datenbank gespeichert und dem Spieler in Tabellen und Funktionsgraphen angezeigt
 - Profile: der Spieler hat die Möglichkeit, verschiedene Profile für sich mit jeweils eigenen Statistiken, High-Scores etc. zu erstellen
