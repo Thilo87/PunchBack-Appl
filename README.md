@@ -4,8 +4,8 @@
 
 *Punch Back* ist ein VR-Ryhthmus-Spiel, in dem der Spieler zum Takt der Musik auf ihn zufliegende Objekte boxen oder ihnen ausweichen muss. Der Fokus liegt bei diesem Spiel auf a) sportlicher Herausforderung und b) eine musikalische Club-/Disco-Atmosphäre zu erzeugen.
 
-<p align="center">
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/mOvrBCflcGI/0.jpg)](https://www.youtube.com/watch?v=mOvrBCflcGI)
+<p align="center">  
+<a href="https://www.youtube.com/watch?v=mOvrBCflcGI"><img src="https://img.youtube.com/vi/mOvrBCflcGI/0.jpg"></a>
 </p>
 
 **Inhalt**
