@@ -1,4 +1,6 @@
-![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Logo.png?raw=true)
+<p align="center">
+  <img src="https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Logo.png?raw=true" />
+</p>
 
 *Punch Back* ist ein VR-Ryhthmus-Spiel, in dem der Spieler zum Takt der Musik auf ihn zufliegende Objekte boxen oder ihnen ausweichen muss. Der Fokus liegt bei diesem Spiel auf a) sportlicher Herausforderung und b) eine musikalische Club-/Disco-Atmosphäre zu erzeugen.
 
