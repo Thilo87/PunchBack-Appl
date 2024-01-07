@@ -22,6 +22,7 @@
 - Anbindung an Steam: das Spiel ist für Steam konzipiert und nutzt einige der Features von Steam
 - Favouriten: der Spieler kann Levels zu seinen Favouriten hinzufügen und sich diese anzeigen lassen
 - Playlists: der Spieler kann Playlists mit verschiedenen Leveln und verschiedenen Spieleinstellungen erstellen
+- Localization: das Spiel ist zweisprachig auf Deutsch und Englisch
 - Fehlerberichterstattung: der Spieler kann mit seiner Zustimmung automatisch bei Fehlern Log-Daten an den Entwickler senden
 
 ### Online-High-Scores
