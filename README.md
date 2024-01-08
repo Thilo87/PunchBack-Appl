@@ -41,6 +41,8 @@ Für das Senden von GET- und POST-Anfragen an den Server wurde das HTTP-Modul de
 ## Bewertungen
 Das Spiel lädt automatisch Bewertungen für Levels hoch bzw. eine durchschnittliche Community-Bewertung herunter.
 
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Ratings.jpg?raw=true)
+
 ## Online-High-Scores
 Die High-Scores des Spielers für jedes Level und jede Schwierigkeitsstufe können auf einen Webserver geuploadet bzw. die High-Scores der anderen Spieler gedownloadet werden. Das Leaderboard-Feature von Steam wurde dabei nicht verwendet.
 
