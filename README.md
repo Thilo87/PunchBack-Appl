@@ -119,7 +119,18 @@ Das Spiel enthält einen umfangreichen Level-Editor, mit dem der Spieler neue Le
 Das Spiel verfügt über ein eigenes Fehlerberichterstattungssystem, welches auch im Shipping Build vorhanden ist. Das Abspeichern von Log-Daten wurde aus Performance-Gründen ausgeschaltet. Diese werden nur im Arbeitsspeicher zwischengespeichert und im Falle eines Fehlers nach Zustimmung des Spielers auf den Server geuploaded, nachdem sie in einem temporären Ordner abgespeichert und mittels des Plugins ZipIt komprimiert wurden.
 
 # Das Spiel
+Im eigentlichen Spiel werden zunächst die aus dem UI bzw. der GameInstance festgelegten Spieleinstellungen dazu verwendet, das ausgewählte Level bzw. die Schwierigkeitsstufe aus einer JSON-Datei nach dem Übergang zu der neuen Map zu laden.
 
+Die fliegenden Objekte werden dabei einem Object Pool entnommen. Dieser wurde eigens für den Zweck implementiert, um fliegende Objekte wiederverwenden und mögliche Hitches beim Spawnen vieler Objekte auf einmal verhindern zu können.
+
+Für akkurates Timing bzw. zur Umgehung von Audio-Latenz-Problemen wurde die Klasse Quartz der Unreal Engine verwendet.
+
+Ebenfalls geladen wird eine JSON-Datei, welche im Level-Editor erzeugt wurde und Amplitudenwerte der gesamten Audio-Datei enthält. Mit Hilfe dieser Werte können Animationen in Blueprints gesteuert werden, welche im Rhythmus der Musik ablaufen sollen.
+Für das Laden der Audio-Datei wurde das kostenlose [RuntimeAudioImporter](https://github.com/gtreshchev/RuntimeAudioImporter "RuntimeAudioImporter")-Plugin verwendet. Die dazugehörigen [AudioAnalysisTools](https://github.com/gtreshchev/AudioAnalysisTools "AudioAnalysisTools") bieten ebenfalls einige Möglichkeiten, Eigenschaften der abgespielten Musik in Echtzeit abzurufen. Zusätzlich dazu wurde in Niagara-Systemen das AudioSpectrum-Modul verwendet.
+
+Da von Anfang an weitere Spielumgebungen geplant waren, wurde viel Wert auf maximal mögliche Generik gesetzt: alle Actors in der Spielumgebung sind problemlos austauschbar mit anderen Actors mit der gleichen Basisklasse.
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/InGameScreenshot1.jpg?raw=true)
 
 # Widgets
 Es wurde eine Vielzahl an Widgets für das Spiel programmiert. Im Folgenden werden einige davon etwas näher erklärt.
