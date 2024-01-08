@@ -14,13 +14,18 @@ Gameplay-Video:
 [TOC]
 
 # Online-Funktionalität
-Der Spieler hat die Möglichkeit, einen Spielernamen auszuwählen, welcher mit seiner Steam-ID verknüpft in einer *MySQL*-Datenbank auf einem Web-Server gespeichert wird. Unter dieser Steam-ID werden auch auch andere Daten wie High-Scores und Bewertungen gespeichert.
+Der Spieler hat die Möglichkeit, einen Spielernamen auszuwählen, welcher mit seiner Steam-ID verknüpft in einer MySQL-Datenbank auf einem Web-Server gespeichert wird. Unter dieser Steam-ID werden auch auch andere Daten wie High-Scores und Bewertungen gespeichert.
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/SQLOnline.jpg?raw=true)
 
 Bei Anfragen an den Web-Server werden PHP-Scripte ausgeführt, welche die Parameter auf Gültigkeit überprüft und Querys in der MySQL-Datenbank ausführt. Es wurde viel Wert auf die Sicherheit der Datenbank gesetzt, so werden z.B. alle gewählten Spielernamen AES-verschlüsselt und nur ein Hash der Steam-ID gespeichert.
 
 Für das Senden von GET- und POST-Anfragen an den Server wurde das HTTP-Modul der Unreal Engine verwendet. Zumeist gibt die aufgerufene Methode dabei ein Handle mit Delegates zurück, an die in Blueprints die Funktionalität bei Erfolg bzw. Misserfolg gebunden wird.
+
+# Lokale Speicherung von Daten
+Lokale Daten wurden zumeist im JSON-Format bzw. mit Hilfe des Json-Moduls gesichert, beispielsweise die zuletzt ausgewählten Modifiers, die gewonnenen Medaillen, Einstellungen etc.
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/LevelData.jpg?raw=true)
 
 # Features
 ## Übersicht
@@ -52,19 +57,19 @@ Die High-Scores des Spielers für jedes Level und jede Schwierigkeitsstufe könn
 Es wurden einige Maßnahmen ergriffen, um das Uploaden veränderter High-Scores und die Veränderung von Leveln zu erschweren.
 
 #### Level-Hashes
-Würde ein Level einen festgelegten Identifier besitzen, unter dem die High-Scores online gespeichert werden, könnte man die Leveldaten so verändern, dass das Level leichter wird oder mehr Punkte abwirft. Um dies zu verhindern, wird mit Hilfe der *FMD5*-Klasse ein MD5-Hash über alle relevanten Leveldaten eines Levels erzeugt. Dieser Hashwert dient nun als Identifier für die online gespeicherten High-Scores verwendet. Eine Veränderung der Leveldaten hat nun eine Veränderung des Hash-Wertes zur Folge, d.h. sollte ein Spieler ein Level auch nur geringfügig verändern, wird das Level wie ein neues behandelt und eine neue High-Score-Tabelle dafür eingerichtet.
+Würde ein Level einen festgelegten Identifier besitzen, unter dem die High-Scores online gespeichert werden, könnte man die Leveldaten so verändern, dass das Level leichter wird oder mehr Punkte abwirft. Um dies zu verhindern, wird mit Hilfe der FMD5-Klasse ein MD5-Hash über alle relevanten Leveldaten eines Levels erzeugt. Dieser Hashwert wird als Identifier für die online gespeicherten High-Scores verwendet. Eine Veränderung der Leveldaten hat nun eine Veränderung des Hash-Wertes zur Folge, d.h. sollte ein Spieler ein Level auch nur geringfügig verändern, wird das Level wie ein neues Level behandelt und eine neue High-Score-Tabelle dafür eingerichtet.
 
 #### SCUE5
-Das kostenlose Plugin *SCUE5* wurde verwendet, um sensible Daten wie den aktuellen Score des Spielers im Speicher zu verschlüsseln, damit sie mit Cheating-Software wie z.B. der *Cheat Engine* nicht bzw. nur sehr schwierig auszulesen und zu verändern sind.
+Das kostenlose Plugin SCUE5 wurde verwendet, um sensible Daten wie den aktuellen Score des Spielers im Speicher zu verschlüsseln, damit sie mit Cheating-Software wie z.B. der Cheat Engine nicht bzw. nur sehr schwierig auszulesen und zu verändern sind.
 
 #### Steam-Tickets
-Über das *Identity-Interface* des *OnlineSubsystems* kann ein Steam-WebAPI-Ticket abgerufen werden und serverseitig über die URL https://api.steampowered.com/ISteamUserAuth/AuthenticateUserTicket/v1/ auf Gültigkeit überprüft werden. Dieses Feature von Steam wird bei verschiedenen Anfragen verwendet.
+Über das Identity-Interface des OnlineSubsystems kann ein Steam-WebAPI-Ticket abgerufen werden und serverseitig über eine Anfrage an  https://api.steampowered.com/ISteamUserAuth/AuthenticateUserTicket/v1/ auf Gültigkeit überprüft werden. Dieses Feature von Steam wird bei verschiedenen Anfragen verwendet.
 
 #### Verifikations-Hashes + Salt
-Bei sensiblen Anfragen an den Server, z.B. dem Upload von Daten, wird zusätzlich zu den Daten ein MD5-Wert aus diesen Daten und einem Steam-WebAPI-Ticket, sowie ein geheimer Salt gesendet. Dies macht es wesentlich schwieriger, die Daten in der URL zu verfälschen.
+Bei sensiblen Anfragen an den Server, z.B. dem Upload von Daten, wird zusätzlich zu den Daten ein MD5-Wert aus diesen Daten und einem Steam-WebAPI-Ticket, sowie ein geheimer Salt gesendet. Dies macht es wesentlich schwieriger, die Daten direkt in der URL zu verfälschen.
 
 ## Statistiken
-Für jedes gestartete Spiel werden Statistiken wie z.B. der erreichte Score, der härteste Boxschlag uvm. lokal in einer *MySQL*-Datenbank gespeichert. Dafür werden diese Werte zunächst im Speicher angelegt und bei Beendigung des Levels in die Datenbank übertragen. Hierfür wurde [S. Rombauts SQLiteCpp-Library](https://github.com/SRombauts/SQLiteCpp "S. Rombauts SQLiteCpp-Library") verwendet. Über entsprechende *MySQL*-Querys werden diese Daten abgerufen und dem Spieler präsentiert.
+Für jedes gestartete Spiel werden Statistiken wie z.B. der erreichte Score, der härteste Boxschlag uvm. lokal in einer MySQL-Datenbank gespeichert. Dafür werden diese Werte zunächst im Speicher angelegt und bei Beendigung des Levels in die Datenbank übertragen. Hierfür wurde [S. Rombauts SQLiteCpp-Library](https://github.com/SRombauts/SQLiteCpp "S. Rombauts SQLiteCpp-Library") verwendet. Über entsprechende MySQL-Querys werden diese Daten abgerufen und dem Spieler präsentiert.
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/LevelStatistics.jpg?raw=true)
 
