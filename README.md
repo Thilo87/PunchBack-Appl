@@ -118,6 +118,8 @@ Das Spiel enthält einen umfangreichen Level-Editor, mit dem der Spieler neue Le
 ## Fehlerberichterstattung
 Das Spiel verfügt über ein eigenes Fehlerberichterstattungssystem, welches auch im Shipping Build vorhanden ist. Das Abspeichern von Log-Daten wurde aus Performance-Gründen ausgeschaltet. Diese werden nur im Arbeitsspeicher zwischengespeichert und im Falle eines Fehlers nach Zustimmung des Spielers auf den Server geuploaded, nachdem sie in einem temporären Ordner abgespeichert und mittels des Plugins ZipIt komprimiert wurden.
 
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Error.jpg?raw=true)
+
 # Das Spiel
 Im eigentlichen Spiel werden zunächst die aus dem UI bzw. der GameInstance festgelegten Spieleinstellungen dazu verwendet, das ausgewählte Level bzw. die Schwierigkeitsstufe aus einer JSON-Datei nach dem Übergang zu der neuen Map zu laden.
 
@@ -137,6 +139,10 @@ Es wurde eine Vielzahl an Widgets für das Spiel programmiert. Im Folgenden werd
 
 ## Keyboard
 Für maximale Flexibilität musste ein eigenes virtuelles Keyboard implementiert werden. Dieses gibt es sowohl für Buchstaben (Deutsch, Englisch) als auch für Ganz- und Gleitkommazahlen. Bei den eigens erstellten bzw. abgeleiteten UMultilineEditableText-Widgets kann bei einem Klick auf dieses das Keyboard automatisch gespawnt werden.
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Keyboard1.jpg?raw=true)
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Keyboard2.jpg?raw=true)
 
 ## ScrollBox
 Es musste ein ScrollBox-Widget implementiert werden, welches eine Sortier- und Suchfunktion beinhaltet. Hierfür wurde eine Basisklasse für die Items mit IsGreaterThan-, IsEqualTo- und DoesFilterApply-Methoden erstellt. Diese Methoden dienen dazu, die Elemente einer ScrollBox zu sortieren oder zu filtern. Die eigentliche Sortierung findet dann über Algo::Sort oder, falls Items einzeln hinzugefügt werden, über eine binäre Suche statt, welche den Index findet, an dem das Item eingefügt werden muss.
