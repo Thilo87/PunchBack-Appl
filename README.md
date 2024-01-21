@@ -162,5 +162,16 @@ Da das Spiel einige *sachliche* Features beinhaltet (z.B. Level-Editor und das B
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Dialogs.jpg?raw=true)
 
+# Performance
+Es wurde Unreal Insights verwendet, um die Performance des Spiels zu verbessern. Dies war allerdings nur in kleinem Umfang nötig, da das Spiel bei moderater Anzahl fliegender Objekte weder einen hohen Anspruch an die CPU noch an die GPU stellt und in der Regel bei 90-120 FPS läuft.
+
+Es wurden dennoch einige Maßnahmen ergriffen, wie zum Beispiel
+
+- Implementierung eines Object-Pools
+- Entfernung unnötiger Schatten, Tick-Events etc.
+- Ersetzen von transparenten Materialen durch *Fake*-Hintergründe, was in dieser Art von Spiel häufiger möglich ist, da der Spieler die Levels immer aus der gleichen Perspektive betrachtet
+- Verwendung von ISMCs bei Objekten mit gleichem Mesh und Material
+- Kollisionsüberprüfung nur, wenn tatsächlich Kollisionen möglich sind
+
 # Tests
 Für Tests wurde in kleinerem Umfang das Unreal Automation-Test-Framework verwendet. Die meisten Tests fanden allerdings *per Hand* einem Testplan folgend statt.
