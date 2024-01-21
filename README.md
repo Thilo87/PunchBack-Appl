@@ -6,7 +6,6 @@
 
 
 <div style="text-align:center">Gameplay-Video
-
 <a href="https://www.youtube.com/watch?v=mOvrBCflcGI"  target="_blank"><img src="https://img.youtube.com/vi/mOvrBCflcGI/0.jpg"></a></div>
 
 Features-Übersichtsvideo:
