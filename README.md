@@ -4,13 +4,12 @@
 
 *Punch Back* ist ein VR-Ryhthmus-Spiel, in dem der Spieler zum Rhythmus der Musik auf ihn zufliegende Objekte boxen oder ihnen ausweichen muss. Der Fokus liegt bei diesem Spiel auf a) sportlicher Herausforderung und b) eine musikalische Club-/Disco-Atmosphäre zu erzeugen.
 
-
-<div style="text-align:center">Gameplay-Video
-<a href="https://www.youtube.com/watch?v=mOvrBCflcGI"  target="_blank"><img src="https://img.youtube.com/vi/mOvrBCflcGI/0.jpg"></a></div>
-
-Features-Übersichtsvideo:
 <p align="center">
-<a href="https://www.youtube.com/watch?v=WVc1ZVRSO6A"  target="_blank"><img src="https://img.youtube.com/vi/WVc1ZVRSO6A/0.jpg"></a>
+<a href="https://www.youtube.com/watch?v=mOvrBCflcGI"><img src="https://img.youtube.com/vi/mOvrBCflcGI/0.jpg"></a>
+</p>
+
+<p align="center">
+<a href="https://www.youtube.com/watch?v=WVc1ZVRSO6A"><img src="https://img.youtube.com/vi/WVc1ZVRSO6A/0.jpg"></a>
 </p>
 
 **Inhalt**
@@ -27,7 +26,7 @@ Bei Anfragen an den Web-Server werden PHP-Scripte ausgeführt, welche die Parame
 Für das Senden von GET- und POST-Anfragen an den Server wurde das HTTP-Modul der Unreal Engine verwendet. Zumeist gibt die aufgerufene Methode dabei ein Handle mit Delegates zurück, an die in Blueprints die Funktionalität bei Erfolg bzw. Misserfolg gebunden wird.
 
 # Lokale Speicherung von Daten
-Lokale Daten wurden zumeist im JSON-Format bzw. mit Hilfe des Json-Moduls gesichert, beispielsweise die zuletzt ausgewählten Modifiers, die gewonnenen Medaillen, Einstellungen etc.
+Lokale Daten wurden zumeist im JSON-Format bzw. mit Hilfe des Json-Moduls gesichert, beispielsweise die zuletzt ausgewählten Modifiers, die gewonnenen Medaillen, Editor-Einstellungen sowie die Level-Daten.
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/LevelData.jpg?raw=true)
 
@@ -35,9 +34,9 @@ Lokale Daten wurden zumeist im JSON-Format bzw. mit Hilfe des Json-Moduls gesich
 ## Übersicht
 - Registrierung: der Spieler kann einen Spielernamen auswählen, der mit seiner Steam-ID verknüpft wird
 - Online-High-Scores: die High-Scores der Spieler können geuploaded und in einem Leaderboard angezeigt werden
-- Bewertungen: die Bewertungen für Levels können geuploaded und eine durchschnittliche Community-Bewertung gedownloaded werden
-- Anbindung an Steam: das Spiel ist für Steam konzipiert und nutzt einige der Features von Steam, zum Beispiel die *Steam-Achievements*
-- Statistiken: es werden zahlreiche Statistiken zum Spielerverhalten lokal in einer Datenbank gespeichert und dem Spieler in Tabellen und Funktionsgraphen angezeigt
+- Bewertungen: die Bewertungen für Levels können geuploaded und eine durchschnittliche Community-Bewertung angezeigt werden
+- Anbindung an Steam: das Spiel ist für Steam bzw. Online-Subsystems konzipiert und nutzt einige der Features von Steam, zum Beispiel die Steam-Achievements
+- Statistiken: es werden zahlreiche Statistiken zum Spielerverhalten lokal in einer MySQL-Datenbank gespeichert und dem Spieler in Tabellen und Funktionsgraphen angezeigt
 - Profile: der Spieler hat die Möglichkeit, verschiedene Profile für sich mit jeweils eigenen Statistiken, High-Scores etc. zu erstellen
 - Modifier: der Spieler kann gewisse Aspekte des Spiels modifizieren und bekommt dafür mehr oder weniger Punkte
 - Medaillen: der Spieler kann Medaillen gewinnen und sammeln
@@ -45,10 +44,10 @@ Lokale Daten wurden zumeist im JSON-Format bzw. mit Hilfe des Json-Moduls gesich
 - Playlists: der Spieler kann Playlists mit verschiedenen Leveln und verschiedenen Spieleinstellungen selber erstellen
 - Level-Editor: das Spiel enthält einen umfangreichen Level-Editor
 - Localization: das Spiel ist zweisprachig auf Deutsch und Englisch
-- Fehlerberichterstattung: der Spieler kann mit seiner Zustimmung automatisch bei Fehlern Log-Daten an den Entwickler senden
+- Fehlerberichterstattung: der Spieler kann nach seiner Zustimmung automatisch bei Fehlern Log-Daten an den Entwickler senden
 
 ## Online-High-Scores
-Die High-Scores des Spielers für jedes Level und jede Schwierigkeitsstufe können auf einen Webserver geuploadet bzw. die High-Scores der anderen Spieler gedownloadet werden. Das Leaderboard-Feature von Steam wurde dabei nicht verwendet.
+Die High-Scores des Spielers für jedes Level und jede Schwierigkeitsstufe können auf einen Web-Server geuploadet bzw. die High-Scores der anderen Spieler gedownloadet werden. Das Leaderboard-Feature von Steam wurde dabei nicht verwendet, sondern aufgrund besonderer Ansprüche ein eigenes mittels PHP und MySQL implementiert.
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/OnlineHighScores.jpg?raw=true)
 
@@ -80,6 +79,8 @@ Für jedes gestartete Spiel werden Statistiken wie z.B. der erreichte Score, der
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/GlobalStats1.jpg?raw=true)
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/GlobalStats2.jpg?raw=true)
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/SQLiteStudioStats.jpg?raw=true)
 
 ## Profile
 Der Spieler hat die Möglichkeit, verschiedene Profile für sich mit jeweils eigenen Playlists, Favouriten, Medaillen und Statistiken zu erstellen und zu verwalten. Dabei wird für jede Steam-ID und für jedes Profil ein eigener Ordner mit den entsprechenden Daten erstellt.
