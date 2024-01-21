@@ -12,15 +12,43 @@
 </p>
 
 <p style="margin : 0; padding-top:0;" align="center">
-**Features-Video:**
+<b>Features-Video (Übersicht):</b>
 </p>
 <p align="center">
 <a href="https://www.youtube.com/watch?v=WVc1ZVRSO6A"><img src="https://img.youtube.com/vi/WVc1ZVRSO6A/0.jpg"></a>
 </p>
 
+
 **Inhalt**
 
-[TOC]
+- [Online-Funktionalität](#online-funktionalit-t)
+- [Lokale Speicherung von Daten](#lokale-speicherung-von-daten)
+- [Features](#features)
+  * [Übersicht](#-bersicht)
+  * [Online-High-Scores](#online-high-scores)
+    + [Anti-Cheat-Maßnahmen](#anti-cheat-ma-nahmen)
+      - [Level-Hashes](#level-hashes)
+      - [SCUE5](#scue5)
+      - [Steam-Tickets](#steam-tickets)
+      - [Verifikations-Hashes + Salt](#verifikations-hashes---salt)
+  * [Bewertungen](#bewertungen)
+  * [Statistiken](#statistiken)
+  * [Profile](#profile)
+  * [Modifier](#modifier)
+  * [Medaillen](#medaillen)
+  * [Level-Editor](#level-editor)
+    + [Features](#features-1)
+  * [Fehlerberichterstattung](#fehlerberichterstattung)
+- [Das Spiel](#das-spiel)
+- [Widgets](#widgets)
+  * [Keyboard](#keyboard)
+  * [ScrollBox](#scrollbox)
+  * [Dialoge](#dialoge)
+- [Performance](#performance)
+- [Tests](#tests)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 # Online-Funktionalität
 Der Spieler hat die Möglichkeit, einen Spielernamen auszuwählen, welcher mit seiner Steam-ID verknüpft in einer MySQL-Datenbank auf einem Web-Server gespeichert wird. Unter dieser Steam-ID werden auch auch andere Daten wie High-Scores und Bewertungen gespeichert.
