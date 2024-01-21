@@ -123,7 +123,7 @@ Das Spiel enthält einen umfangreichen Level-Editor, mit dem der Spieler neue Le
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Editor6.jpg?raw=true)
 
 ## Fehlerberichterstattung
-Das Spiel verfügt über ein eigenes Fehlerberichterstattungssystem, welches auch im Shipping Build vorhanden ist. Das Abspeichern von Log-Daten wurde aus Performance-Gründen ausgeschaltet. Diese werden nur im Arbeitsspeicher zwischengespeichert und im Falle eines Fehlers nach Zustimmung des Spielers auf den Server geuploaded, nachdem sie in einem temporären Ordner abgespeichert und mittels des Plugins ZipIt komprimiert wurden.
+Das Spiel verfügt über ein eigenes Fehlerberichterstattungssystem, welches auch im Shipping Build vorhanden ist. Das automatische Abspeichern von Log-Daten wurde aus Performance-Gründen ausgeschaltet. Diese werden nur im Arbeitsspeicher zwischengespeichert und im Falle eines Fehlers nach Zustimmung des Spielers auf den Server geuploaded, nachdem sie in einem temporären Ordner abgespeichert und ZIP-komprimiert wurden.
 
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Error.jpg?raw=true)
 
@@ -132,9 +132,12 @@ Im eigentlichen Spiel werden zunächst die aus dem UI bzw. der GameInstance fest
 
 Die fliegenden Objekte werden dabei einem Object Pool entnommen. Dieser wurde eigens für den Zweck implementiert, um fliegende Objekte wiederverwenden und mögliche Hitches beim Spawnen vieler Objekte auf einmal verhindern zu können.
 
+Die Objekte bewegen sich konstant auf der X-Achse, während die Bewegung in Y- und Z-Richtung durch FloatCurves definiert wird. Auf diese Weise sind abwechslungsreiche Bewegungen der Objekte möglich.
+
 Für akkurates Timing bzw. zur Umgehung von Audio-Latenz-Problemen wurde die Klasse Quartz der Unreal Engine verwendet.
 
 Ebenfalls geladen wird eine JSON-Datei, welche im Level-Editor erzeugt wurde und Amplitudenwerte der gesamten Audio-Datei enthält. Mit Hilfe dieser Werte können Animationen in Blueprints gesteuert werden, welche im Rhythmus der Musik ablaufen sollen.
+
 Für das Laden der Audio-Datei wurde das kostenlose [RuntimeAudioImporter](https://github.com/gtreshchev/RuntimeAudioImporter "RuntimeAudioImporter")-Plugin verwendet. Die dazugehörigen [AudioAnalysisTools](https://github.com/gtreshchev/AudioAnalysisTools "AudioAnalysisTools") bieten ebenfalls einige Möglichkeiten, Eigenschaften der abgespielten Musik in Echtzeit abzurufen. Zusätzlich dazu wurde in Niagara-Systemen das AudioSpectrum-Modul verwendet.
 
 Da von Anfang an weitere Spielumgebungen geplant waren, wurde viel Wert auf maximal mögliche Generik gesetzt: alle Actors in der Spielumgebung sind problemlos austauschbar mit anderen Actors mit der gleichen Basisklasse.
@@ -142,7 +145,7 @@ Da von Anfang an weitere Spielumgebungen geplant waren, wurde viel Wert auf maxi
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/InGameScreenshot1.jpg?raw=true)
 
 # Widgets
-Es wurde eine Vielzahl an Widgets für das Spiel programmiert. Im Folgenden werden einige davon etwas näher erklärt.
+Es wurde eine Vielzahl an Widgets für das Spiel programmiert. Im Folgenden werden einige davon etwas näher vorgestellt.
 
 ## Keyboard
 Für maximale Flexibilität musste ein eigenes virtuelles Keyboard implementiert werden. Dieses gibt es sowohl für Buchstaben (Deutsch, Englisch) als auch für Ganz- und Gleitkommazahlen. Bei den eigens erstellten bzw. abgeleiteten UMultilineEditableText-Widgets kann bei einem Klick auf dieses das Keyboard automatisch gespawnt werden.
@@ -152,7 +155,12 @@ Für maximale Flexibilität musste ein eigenes virtuelles Keyboard implementiert
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Keyboard2.jpg?raw=true)
 
 ## ScrollBox
-Es musste ein ScrollBox-Widget implementiert werden, welches eine Sortier- und Suchfunktion beinhaltet. Hierfür wurde eine Basisklasse für die Items mit IsGreaterThan-, IsEqualTo- und DoesFilterApply-Methoden erstellt. Diese Methoden dienen dazu, die Elemente einer ScrollBox zu sortieren oder zu filtern. Die eigentliche Sortierung findet dann über Algo::Sort oder, falls Items einzeln hinzugefügt werden, über eine binäre Suche statt, welche den Index findet, an dem das Item eingefügt werden muss.
+Es musste ein ScrollBox-Widget implementiert werden, welches eine Sortier- und Suchfunktion beinhaltet. Hierfür wurde eine Basisklasse für die Items mit Vergleichs-Methoden erstellt. Die eigentliche Sortierung findet dann über Algo::Sort oder, falls Items einzeln hinzugefügt werden, über eine binäre Suche statt, welche den Index findet, an dem das Item eingefügt werden muss.
+
+## Dialoge
+Da das Spiel einige *sachliche* Features beinhaltet (z.B. Level-Editor und das Bearbeiten von Playlists), die hohe Benutzerfreundlichkeit erfordern, wurde ein Dialog-System ähnlich dem von Windows implementiert. Über Blueprints können Dialoge einfach über eine Manager-Klasse gespawnt und weitere Funktionalität an die Entscheidungen des Users gebunden werden.
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Dialogs.jpg?raw=true)
 
 # Tests
-Für Tests wurde in kleinerem Umfang das Unreal Automation-Test-Framework verwendet. Die meisten Tests fanden allerdings *per Hand* statt.
+Für Tests wurde in kleinerem Umfang das Unreal Automation-Test-Framework verwendet. Die meisten Tests fanden allerdings *per Hand* einem Testplan folgend statt.
