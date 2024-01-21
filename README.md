@@ -95,7 +95,9 @@ Der Spieler hat vor dem Start eines Spiels die Möglichkeit, verschiedene Modifi
 ![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Modifiers.jpg?raw=true)
 
 ## Medaillen
-Der Spieler kann Bronze-, Silber- und Goldmedaillen gewinnen. Die benötigte Punktezahl dafür wird in den Leveldaten gespeichert. Als kleines optisches Gimmick fallen mittels Physik-Simulation die gewonnenen Medaillen aus 1-2 Metern Höhe auf den Boden, ihre Locations werden nach dem *Sleep*-Aufruf der Physik-Engine abgespeichert und drei Instanced-Static-Mesh-Components hinzugefügt (für drei Medaillenarten - Bronze, Silber und Gold).
+Der Spieler kann Bronze-, Silber- und Goldmedaillen gewinnen. Die benötigte Punktezahl dafür wird in den Leveldaten gespeichert. Als kleines optisches Gimmick fallen mittels Physik-Simulation die gewonnenen Medaillen aus 1-2 Metern Höhe auf den Boden, ihre Locations werden nach dem Sleep-Aufruf der Physik-Engine abgespeichert und drei Instanced-Static-Mesh-Components hinzugefügt (für drei Medaillenarten - Bronze, Silber und Gold).
+
+![](https://github.com/Thilo87/PunchBack-Appl/blob/main/img/Medals.jpg?raw=true)
 
 ## Level-Editor
 Das Spiel enthält einen umfangreichen Level-Editor, mit dem der Spieler neue Levels mit eigens ausgewählter Musik erstellen kann.
