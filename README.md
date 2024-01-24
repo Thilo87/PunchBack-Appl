@@ -86,7 +86,7 @@ Die High-Scores des Spielers für jedes Level und jede Schwierigkeitsstufe könn
 Es wurden einige Maßnahmen ergriffen, um das Uploaden veränderter High-Scores und die Veränderung von Leveln zu erschweren.
 
 #### Level-Hashes
-Würde ein Level einen festgelegten Identifier besitzen, unter dem die High-Scores online gespeichert werden, könnte man die Leveldaten so verändern, dass das Level leichter wird oder mehr Punkte abwirft. Um dies zu verhindern, wird mit Hilfe der FMD5-Klasse ein MD5-Hash über alle relevanten Leveldaten eines Levels erzeugt. Dieser Hashwert wird als Identifier für die online gespeicherten High-Scores verwendet. Eine Veränderung der Leveldaten hat nun eine Veränderung des Hash-Wertes zur Folge, d.h. sollte ein Spieler ein Level auch nur geringfügig verändern, wird das Level wie ein neues Level behandelt und eine neue High-Score-Tabelle dafür eingerichtet.
+Würde ein Level einen festgelegten Identifier besitzen, unter dem die High-Scores online gespeichert werden, könnte man die Leveldaten so verändern, dass das Level leichter wird oder mehr Punkte abwirft. Um dies zu verhindern, wird ein SHA256-Hash über alle relevanten Leveldaten eines Levels erzeugt. Dieser Hashwert wird als Identifier für die online gespeicherten High-Scores verwendet. Eine Veränderung der Leveldaten hat nun eine Veränderung des Hash-Wertes zur Folge, d.h. sollte ein Spieler ein Level auch nur geringfügig verändern, wird das Level wie ein neues Level behandelt und eine neue High-Score-Tabelle dafür eingerichtet.
 
 #### SCUE5
 Das kostenlose Plugin SCUE5 wurde verwendet, um sensible Daten wie den aktuellen Score des Spielers im Speicher zu verschlüsseln, damit sie mit Cheating-Software wie z.B. der Cheat Engine nicht bzw. nur sehr schwierig auszulesen und zu verändern sind.
@@ -95,7 +95,7 @@ Das kostenlose Plugin SCUE5 wurde verwendet, um sensible Daten wie den aktuellen
 Über das Identity-Interface des OnlineSubsystems kann ein Steam-WebAPI-Ticket abgerufen werden und serverseitig über eine Anfrage an  https://api.steampowered.com/ISteamUserAuth/AuthenticateUserTicket/v1/ auf Gültigkeit überprüft werden. Dieses Feature von Steam wird bei verschiedenen Anfragen verwendet.
 
 #### Verifikations-Hashes + Salt
-Bei sensiblen Anfragen an den Server, z.B. dem Upload von Daten, wird zusätzlich zu den Daten ein MD5-Wert aus diesen Daten und einem Steam-WebAPI-Ticket, sowie ein geheimer Salt gesendet. Dies macht es wesentlich schwieriger, die Daten direkt in der URL zu verfälschen.
+Bei sensiblen Anfragen an den Server, z.B. dem Upload von Daten, wird zusätzlich zu den Daten ein SHA256-Wert aus diesen Daten und einem Steam-WebAPI-Ticket, sowie ein geheimer Salt gesendet. Dies macht es wesentlich schwieriger, die Daten direkt in der URL zu verfälschen.
 
 ## Bewertungen
 Das Spiel lädt automatisch Bewertungen für Levels hoch bzw. eine durchschnittliche Community-Bewertung herunter.
